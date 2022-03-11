@@ -5,40 +5,38 @@
   tasks:
 
 
-#  - name: update repository index
-#    apt:
-#      update_cache: yes
-#    when: ansible_distribution_version == "Ubuntu"
-   
-
-  - name: install apache  and php packages Ubuntu package 
+  - name: update repository index in ubuntu distros
     apt:
-      name: 
-        - apache2
-        - libapache2-mod-php 
-      state: latest
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
-  - name: install apache and php packages ArchLinux package
-    pacman:
-      name:
-        - apache2
-        - libapache2-mod-php
+  - name: install apache2 pachage in ubuntu
+    apt:
+      name: apache2
+      state: latest 
+    when: ansible_distribution == "Ubuntu"
+  
+  - name: add php support for apache in ubuntu distros
+    apt: 
+      name: libapache2-mod-php
       state: latest
-      update_cache: yes
-    when: ansible_distribution == "Arch Linux"
-
-
- 
-#  - name: install apache and php packages ArchLinux  package
-#  - name: install apache and php
-#    package:
-#      name: 
-#        - "{{ apache_package }}"
-#        - "{{ php_package }}"
-#      state: latest
-#      update_cache: yes 
-#    when: ansible_distribution == "Archlinux"
+    when: ansible_distribution == "Ubuntu" 
+    
 
   
+  - name: update repository index in fedora
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
+
+  - name: install apache2 pachage
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "Fedora"
+
+  - name: add php support for apache in fedora
+    dnf:
+      name: php
+      state: latest
+    when: ansible_distribution == "Fedora"
