@@ -5,39 +5,62 @@
   tasks:
 
 
-  - name: update repository index in ubuntu distros
+  - name: update repository index in ubuntu 10.126.75.1
     apt:
       update_cache: yes
-    when: ansible_distribution == "Ubuntu" 
+    when: ansible_distribution == " Ubuntu" 
 
-  - name: install apache2 pachage in ubuntu distro
+  - name: install apache2 pachage in ubuntu 10.126.75.1
     apt:
       name: apache2
       state: latest 
     when: ansible_distribution == "Ubuntu"
 
   
-  - name: add php support for apache in ubuntu distros
+  - name: add php support for apache in ubuntu 10.126.75.1
     apt: 
       name: libapache2-mod-php
       state: latest
     when: ansible_distribution == "Ubuntu"
- 
-    
 
-  
-  - name: update repository index in fedora
+
+
+  - name: update repository index in Debian 10.126.74.185
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Debian"
+
+  - name: install apache2 pachage in Debian 10.126.74.185
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Debian"
+
+
+  - name: add php support for apache in Debian 10.126.74.185
+    apt:
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Debian"
+
+
+
+
+
+
+
+  - name: update repository index in fedora 10.126.74.148
     dnf:
       update_cache: yes
     when: ansible_distribution == "Fedora"
 
-  - name: install apache2 pachage
+  - name: install apache2 pachage 10.126.74.148
     dnf:
       name: httpd
       state: latest
     when: ansible_distribution == "Fedora"
 
-  - name: add php support for apache in fedora
+  - name: add php support for apache in fedora 10.126.74.148
     dnf:
       name: php
       state: latest

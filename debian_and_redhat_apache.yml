@@ -1,0 +1,44 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+
+  - name: update repository index in Ubuntu 10.126.75.1 Popos 10.126.75.0 Debian 10.126.74.185
+    apt:
+      update_cache: yes
+    when: ansible_os_family == "Debian" 
+
+  - name: install apache2 pachage in Ubuntu 10.126.75.1 Popos 10.126.75.0 Debian 10.126.74.185
+    apt:
+      name: apache2
+      state: latest 
+    when: ansible_os_family == "Debian"
+
+  
+  - name: add php support for apache in Ubuntu 10.126.75.1 Popos 10.126.75.0 Debian 10.126.74.185
+    apt: 
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_os_family == "Debian"
+
+
+
+
+  - name: update repository index in fedora 10.126.74.148
+    dnf:
+      update_cache: yes
+    when: ansible_os_family == "RedHat"
+
+  - name: install apache2 pachage 10.126.74.148
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_os_family == "RedHat"
+
+  - name: add php support for apache in fedora 10.126.74.148
+    dnf:
+      name: php
+      state: latest
+    when: ansible_os_family == "RedHat"
