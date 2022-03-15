@@ -1,0 +1,38 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install updates "pacman -Sy" Endeavour 10.126.74.29 , Garuda 10.126.75.2 , Manjaro 10.126.74.194 
+    pacman:   
+      update_cache: yes
+    when: ansible_os_family == 'Archlinux'
+  
+  - name: Install updates "pacman -Su" Endeavour 10.126.74.29 , Garuda 10.126.75.2 , Manjaro 10.126.74.194
+    pacman:
+      upgrade: yes
+    when: ansible_os_family == 'Archlinux'
+  
+  - name: Install updates "pacman -Syu" Endeavour 10.126.74.29 , Garuda 10.126.75.2 , Manjaro 10.126.74.194
+    pacman:
+      update_cache: yes
+      upgrade: yes    
+    when: ansible_os_family == 'Archlinux' 
+  
+  - name: Install updates Pop 10.126.75.0 , Ubuntu 10.126.75.1 , Debian 10.126.74.185 
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_os_family == 'Debian' 
+
+  - name: Install updates Fedora 10.126.74.148
+    dnf:
+      name: "*"
+      state: latest
+    when: ansible_os_family == 'RedHat' 
+
+
+
+
+  

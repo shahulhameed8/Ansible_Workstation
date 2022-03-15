@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Install a .deb package
+    apt:
+      deb: /tmp/google-chrome-stable_current_amd645.deb
+    when: ansible_os_family == 'Debian'
